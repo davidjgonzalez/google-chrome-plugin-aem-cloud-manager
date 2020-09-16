@@ -1,0 +1,31 @@
+{
+  "name": "Quick Cloud Manager",
+  "version": "1.0.0",
+  "description": "Adobe Cloud Manager extension!",
+  "permissions": ["activeTab", "declarativeContent"],
+
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  
+  "page_action": {
+    "default_popup": "popup.html"
+  },
+
+  "content_scripts": [{
+    "matches": [
+      "*://*.adobeaemcloud.com/*",
+      "*://experience.adobe.com/*"
+      ],
+    "js": ["content.js"]
+  }],
+
+  "icons": { 
+    "16": "icon128.png",
+    "48": "icon128.png",
+   "128": "icon128.png" 
+  },
+ 
+  "manifest_version": 2
+}

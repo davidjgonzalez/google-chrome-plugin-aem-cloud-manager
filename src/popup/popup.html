@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <sp-theme scale="medium" color="light">
+        <input type="text" id="copy-to-clipboard-input"/>
+
+        <sp-icons-medium></sp-icons-medium>
+
+        <div id="error-alert" class="spectrum-Alert spectrum-Alert--warning">
+            <div class="spectrum-Alert-header">Chrome plugin unable to communicate with AEM as a Cloud Author Service page.</div>
+            <div class="spectrum-Alert-content">Please ensure the active tab contains a valid AEM as a Cloud Service AEM Author page and refresh the page and try clicking the Chrome plug-in again.</div>
+        </div>
+
+
+        <div id="invalid-host-alert" class="spectrum-Alert spectrum-Alert--error">
+            <div class="spectrum-Alert-header">This plugin only works on the following AEM as a Cloud Service domains:</div>
+            <div class="spectrum-Alert-content">
+                <ul>
+                    <li>adobeaemcloud.com</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="injection-point"></div>
+
+    </sp-theme>
+
+  </body>
+</html>

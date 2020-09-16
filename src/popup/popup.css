@@ -1,0 +1,31 @@
+body {
+  min-width: 600px;
+  min-height: 475px;
+  padding: 0.5rem 1rem 1rem 1rem;
+}
+
+#error-alert {
+    display: none;
+}
+
+#invalid-host-alert {
+    display: none;
+}
+
+#copy-to-clipboard-input {
+    position: absolute;
+    top: -10000px;
+    left: -10000px;
+}
+
+sp-action-menu {
+    border: solid 1px #cacaca;
+    background-color: #fafafa;
+    border-radius: 3px;
+    height: 30px;
+}
+
+sp-action-button, sp-action-menu {
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
