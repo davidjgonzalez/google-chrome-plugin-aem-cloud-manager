@@ -12,7 +12,7 @@
 Run a build or watch, to deploy to /dist. Load /dist via Chrome Extension Manager via Unpacked extensions.
 
 ```
-$ npm run buld
+$ npm run build
 ```
 
 or 

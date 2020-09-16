@@ -41,7 +41,7 @@
     "url": "git+https://github.com/davidjgonzalez/google-chrome-plugin-aem-cloud-manager.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "Apache v2",
   "bugs": {
     "url": "https://github.com/davidjgonzalez/google-chrome-plugin-aem-cloud-manager/issues"
   },
