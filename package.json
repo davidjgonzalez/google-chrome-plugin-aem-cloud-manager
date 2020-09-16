@@ -1,5 +1,5 @@
 {
-  "name": "google-chrome-cloud-manager-aem-info",
+  "name": "google-chrome-aem-cloud-manager-aem",
   "version": "1.0.0",
   "description": "Google Chrome plugin for surfacing information and quick links from AEM as a Cloud Service author services.",
   "main": "background.js",
@@ -38,12 +38,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/davidjgonzalez/google-chrome-docs-metadata.git"
+    "url": "git+https://github.com/davidjgonzalez/google-chrome-plugin-aem-cloud-manager.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/davidjgonzalez/google-chrome-docs-metadata/issues"
+    "url": "https://github.com/davidjgonzalez/google-chrome-plugin-aem-cloud-manager/issues"
   },
-  "homepage": "https://github.com/davidjgonzalez/google-chrome-docs-metadata#readme"
+  "homepage": "https://github.com/davidjgonzalez/google-chrome-plugin-aem-cloud-manager#readme"
 }
