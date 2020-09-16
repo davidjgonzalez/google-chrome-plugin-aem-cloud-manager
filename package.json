@@ -16,7 +16,7 @@
     "@spectrum-web-components/button": "^0.8.4",
     "@spectrum-web-components/dropdown": "^0.7.2",
     "@spectrum-web-components/icon": "^0.5.2",
-    "@spectrum-web-components/icons": "^0.4.2",
+    "@spectrum-web-components/icons": "^0.4.2"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^3.0.0",
