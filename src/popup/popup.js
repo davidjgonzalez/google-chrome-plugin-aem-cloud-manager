@@ -69,10 +69,16 @@ function getHtml(d) {
     <sp-action-button target="_blank" href="https://experience.adobe.com/#/@${d.tenantId}/cloud-manager/environments.html/program/${d.programId}/environment/${d.environmentId}">Open in Cloud Manager</sp-action-button>
     
     <!-- Tail Logs -->
-    <p class="spectrum-Heading spectrum-Heading--L spectrum-Heading--light">Tail Log (aio cloudmanager commands)</p>
-    <sp-action-button data-copy-to-clipboard="aio cloudmanager:tail-log --programId=${d.programId} ${d.environmentId} author aemerror">Author - aemerror</sp-action-button>
-    <sp-action-button data-copy-to-clipboard="aio cloudmanager:tail-log --programId=${d.programId} ${d.environmentId} author aemaccess">Author - aemaccess</sp-action-button>
-    <sp-action-button data-copy-to-clipboard="aio cloudmanager:tail-log --programId=${d.programId} ${d.environmentId} author aemrequest">Author - aemrequest</sp-action-button>
+    <p class="spectrum-Heading spectrum-Heading--L spectrum-Heading--light">Tail Logs <em>(copy/paste aio command)</em></p>
+    <sp-action-button data-copy-to-clipboard="aio cloudmanager:tail-log --programId=${d.programId} ${d.environmentId} author aemerror">aemerror</sp-action-button>
+    <sp-action-button data-copy-to-clipboard="aio cloudmanager:tail-log --programId=${d.programId} ${d.environmentId} author aemaccess">aemaccess</sp-action-button>
+    <sp-action-button data-copy-to-clipboard="aio cloudmanager:tail-log --programId=${d.programId} ${d.environmentId} author aemrequest">aemrequest</sp-action-button>
+
+    <!-- Download Logs -->
+    <p class="spectrum-Heading spectrum-Heading--L spectrum-Heading--light">Download Logs <em>(copy/paste aio command)</em></p>
+    <sp-action-button data-copy-to-clipboard="aio cloudmanager:download-logs --programId=${d.programId} ${d.environmentId} author aemerror 1">aemerror</sp-action-button>
+    <sp-action-button data-copy-to-clipboard="aio cloudmanager:download-logs --programId=${d.programId} ${d.environmentId} author aemaccess 1">aemaccess</sp-action-button>
+    <sp-action-button data-copy-to-clipboard="aio cloudmanager:download-logs --programId=${d.programId} ${d.environmentId} author aemrequest 1">aemrequest</sp-action-button>
     `;
 }
 

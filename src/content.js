@@ -5,20 +5,25 @@
     function script() {
         var el = document.createElement("span");
 
-        if (!window.digitalData || !window.digitalData.user || !window.digitalData.user.attributes || !window.digitalData.page || !window.digitalData.page.attributes) {
-            return '';
+        let runModes = window.digitalData?.user?.attributes?.runModes;
+        let serviceType = 'unknown';
+
+        if (runModes) {
+            serviceType = runModes.indexOf('author') >= 0 ? 'author' : 'publish';
+        } else {
+            serviceType = parseServiceTypeFromDomain(window.location.host);
         }
 
         el.setAttribute("id", "google-chrome-plugin-cloud-manager");
         el.setAttribute("style", "display: none");
-        el.setAttribute("programName", window.digitalData.user.attributes.programName);
-        el.setAttribute("programVersion", window.digitalData.page.solution.version);
-        el.setAttribute("programId", window.digitalData.user.attributes.programId);
-        el.setAttribute("programType", window.digitalData.page.attributes.environment);
-        el.setAttribute("environmentName", window.digitalData.user.attributes.environmentName);
-        el.setAttribute("environmentId", window.digitalData.user.attributes.environmentId);
-        el.setAttribute("tenantId", window.digitalData.user.attributes.tenantId);
-        el.setAttribute("serviceType", window.digitalData.user.attributes.runModes.indexOf('author') >= 0 ? 'author' : 'publish');
+        el.setAttribute("programName", window.digitalData?.user?.attributes?.programName || getMissingValue(serviceType));
+        el.setAttribute("programVersion", window.digitalData?.page?.solution?.version || getMissingValue(serviceType));
+        el.setAttribute("programId", window.digitalData?.user?.attributes?.programId || parseProgramIdFromDomain(window.location.host));
+        el.setAttribute("programType", window.digitalData?.user?.attributes?.environment || getMissingValue(serviceType));
+        el.setAttribute("environmentName", window.digitalData?.user?.attributes?environmentName || getMissingValue(serviceType));
+        el.setAttribute("environmentId", window.digitalData?.user?.attributes?.environmentId || parseEnvironmentIdFromDomain(window.location.host)) ;
+        el.setAttribute("tenantId", window.digitalData?.user?.attributes?.tenantId || getMissingValue(serviceType));
+        el.setAttribute("serviceType", serviceType || 'Unavailable');
 
         document.body.appendChild(el);
     }
@@ -65,6 +70,50 @@
         el.remove();
 
         return data;
+    }
+
+    function getMissingValue(serviceType) {
+        if ('author' === serviceType) {
+            return 'Unavailable';
+        } else if ('publish' === 'serviceType') {
+            return 'Unavailable on Publish'
+        } else {
+            return 'Unavailable';
+        }
+
+    }
+
+    function parseServiceTypeFromDomain(host) {
+        let segments = host.substring(0, host.indexOf('.')).split('-') || [];
+
+        let environmentType = segments[0];
+        if (environmentType === 'author' || environmentType == 'publish') {
+            return environmentType;
+        } else {
+            return null;
+        }
+    }
+
+    function parseProgramIdFromDomain(host) {
+        let segments = host.substring(0, host.indexOf('.')).split('-') || [];
+
+        let programId = segments[1];
+        if (programId.indexOf('p') !== 0 && programId.length > 1) {
+            return null;
+        } else {
+            return programId.substring(1, programId.length);
+        }
+    }
+
+    function parseEnvironmentIdFromDomain(host) {
+        let segments = host.substring(0, host.indexOf('.')).split('-') || [];
+
+        let environmentId = segments[2];
+        if (environmentId.indexOf('e') !== 0 && environmentId.length > 1) {
+            return null;
+        } else {
+            return environmentId.substring(1, environmentId.length);
+        }
     }
 
     chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {                
