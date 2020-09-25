@@ -1,6 +1,6 @@
 {
   "name": "Quick Cloud Manager",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Adobe Cloud Manager extension!",
   "permissions": ["activeTab", "declarativeContent"],
 
@@ -15,8 +15,7 @@
 
   "content_scripts": [{
     "matches": [
-      "*://*.adobeaemcloud.com/*",
-      "*://experience.adobe.com/*"
+      "*://*.adobeaemcloud.com/*"
       ],
     "js": ["content.js"]
   }],

@@ -1,6 +1,6 @@
 {
   "name": "google-chrome-aem-cloud-manager-aem",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Google Chrome plugin for surfacing information and quick links from AEM as a Cloud Service author services.",
   "main": "background.js",
   "dependencies": {
@@ -16,9 +16,13 @@
     "@spectrum-web-components/button": "^0.8.4",
     "@spectrum-web-components/dropdown": "^0.7.2",
     "@spectrum-web-components/icon": "^0.5.2",
-    "@spectrum-web-components/icons": "^0.4.2"
+    "@spectrum-web-components/icons": "^0.4.2",
+    "babel-polyfill": "^6.26.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^6.1.0",
     "css-loader": "^4.3.0",
@@ -27,7 +31,7 @@
     "mini-css-extract-plugin": "^0.9.0",
     "npm": "^6.14.8",
     "style-loader": "^1.2.1",
-    "webpack": "^4.44.1",
+    "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12"
   },
   "scripts": {

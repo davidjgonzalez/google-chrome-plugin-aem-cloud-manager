@@ -1,15 +1,15 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CopyPlugin = require('copy-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const path = require("path");
 
 module.exports = {
-  mode: 'production',
+  mode: "production",
   entry: {
     popup: "./src/popup/popup.js",
     content: "./src/content.js",
-    background: "./src/background.js"
+    background: "./src/background.js",
   },
   output: {
     filename: "[name].js",
@@ -17,6 +17,16 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+          },
+        },
+      },
       {
         test: /\.css$/i,
         use: [MiniCssExtractPlugin.loader, "css-loader"],
@@ -26,7 +36,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-        minify: true,
+      minify: true,
     }),
     new HtmlWebpackPlugin({
       filename: "popup.html",
@@ -34,10 +44,10 @@ module.exports = {
       chunks: ["popup"],
     }),
     new CopyPlugin({
-        patterns: [
-          { from: 'src/manifest.json', to: 'manifest.json' },
-          { from: 'src/icon.png', to: 'icon128.png' },
-        ],
-      }),
+      patterns: [
+        { from: "src/manifest.json", to: "manifest.json" },
+        { from: "src/icon.png", to: "icon128.png" },
+      ],
+    }),
   ],
 };
