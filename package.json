@@ -1,6 +1,6 @@
 {
   "name": "google-chrome-aem-cloud-manager-aem",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Google Chrome plugin for surfacing information and quick links from AEM as a Cloud Service author services.",
   "main": "background.js",
   "dependencies": {
