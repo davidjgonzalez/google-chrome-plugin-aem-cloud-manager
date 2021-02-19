@@ -49,5 +49,12 @@ module.exports = {
         { from: "src/icon.png", to: "icon128.png" },
       ],
     }),
+    new CopyPlugin({
+        patterns: [
+          { from: "src/manifest.json", to: "manifest.json" },
+          { from: "src/icon.png", to: "icon128.png" },
+          { from: "node_modules/@spectrum-css/icon/dist/spectrum-css-icons-medium.svg", to: "spectrum-css-icons-medium.svg"} 
+        ],
+      }),
   ],
 };

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="spectrum spectrum--medium spectrum--light">
   <head>
   </head>
   <body>
@@ -8,11 +8,11 @@
 
         <sp-icons-medium></sp-icons-medium>
 
+
         <div id="error-alert" class="spectrum-Alert spectrum-Alert--warning">
             <div class="spectrum-Alert-header">Chrome plugin unable to communicate with AEM as a Cloud service page.</div>
             <div class="spectrum-Alert-content">Please ensure the active tab contains a valid AEM as a Cloud Service page on the adobeaemcloud.com domain and refresh the page and try clicking the Chrome plug-in again.</div>
         </div>
-
 
         <div id="invalid-host-alert" class="spectrum-Alert spectrum-Alert--error">
             <div class="spectrum-Alert-header">This plugin only works on the following AEM as a Cloud Service domains:</div>
@@ -23,7 +23,13 @@
             </div>
         </div>
 
-        <div id="injection-point"></div>
+        <div id="injection-point">
+            <div class="loader loader--wrapper">
+                <div class="loader loader--progress">
+                    <sp-progress-circle indeterminate size="large"></sp-progress-circle>
+                </div>
+            </div>
+        </div>
 
     </sp-theme>
 

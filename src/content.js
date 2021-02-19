@@ -1,11 +1,11 @@
+import { getContentPath } from './content-resolver';
+
+const fetch = require('node-fetch');
 require("babel-polyfill");
 
 (function() { 
     let tries = 0,
         data;
-
-   
-    
 
     function script() {
         var el = document.createElement("span");
@@ -31,7 +31,7 @@ require("babel-polyfill");
         el.setAttribute("environmentId", window.digitalData?.user?.attributes?.environmentId || parseEnvironmentIdFromDomain(window.location.host)) ;
         el.setAttribute("tenantId", window.digitalData?.user?.attributes?.tenantId || getMissingValue(serviceType));
         el.setAttribute("serviceType", serviceType || parseServiceTypeFromDomain(window.location.host));
-        
+
         document.body.appendChild(el);
 
         function getMissingValue(serviceType) {
@@ -105,7 +105,8 @@ require("babel-polyfill");
         data = {
             currentWindow: {
                 host: window.location.host,
-                path: window.location.pathname
+                path: window.location.pathname,
+                href: window.location.href
             },
             programName: el.getAttribute("programName"),
             programId: el.getAttribute("programId"),
@@ -115,17 +116,23 @@ require("babel-polyfill");
             environmentId: el.getAttribute("environmentId"),
             tenantId:  el.getAttribute("tenantId"),
             serviceType: el.getAttribute("serviceType"),
+            contentPath: getContentPath(window.location.pathname, window.location.href)
         };
 
         el.remove();
+        
+        if (data.contentPath) {
+            data.contentDump = await fetch(`${data.contentPath}.5.json`).then(res => res.json());
+        }
 
         return data;
     }
 
-
     chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {                
+
         if (msg.text === "collect_adobe-cloud-manager_data") {
-            getData().then(data => sendResponse(data));
+            getData().then(data => { sendResponse(data) });
+            return true;
         }
     });
 
