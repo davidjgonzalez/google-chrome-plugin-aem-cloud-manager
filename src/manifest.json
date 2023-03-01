@@ -1,7 +1,7 @@
 {
   "name": "AEM ❤️ Cloud Manager",
-  "version": "1.4.0",
-  "description": "Google Chrome plugin for surfacing information and quick links from AEM as a Cloud Service.",
+  "version": "1.5.0",
+  "description": "Google Chrome extension for surfacing information and quick links from AEM as a Cloud Service.",
   "permissions": ["activeTab", "declarativeContent"],
 
   "background": {

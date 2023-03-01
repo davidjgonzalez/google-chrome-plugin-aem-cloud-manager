@@ -1,6 +1,6 @@
 import { getContentPath } from './content-resolver';
 
-const fetch = require('node-fetch');
+//const fetch = require('node-fetch');
 require("babel-polyfill");
 
 (function() { 
@@ -27,10 +27,10 @@ require("babel-polyfill");
         el.setAttribute("programId", window.digitalData?.user?.attributes?.programId || parseProgramIdFromDomain(window.location.host));
         el.setAttribute("environmentType", window.digitalData?.page?.attributes?.environment, getMissingValue(serviceType));
         el.setAttribute("environmentName", window.digitalData?.user?.attributes?.environmentName || getMissingValue(serviceType));
-        el.setAttribute("environmentName", window.digitalData?.user?.attributes?.environmentName || getMissingValue(serviceType));    
         el.setAttribute("environmentId", window.digitalData?.user?.attributes?.environmentId || parseEnvironmentIdFromDomain(window.location.host)) ;
         el.setAttribute("tenantId", window.digitalData?.user?.attributes?.tenantId || getMissingValue(serviceType));
         el.setAttribute("serviceType", serviceType || parseServiceTypeFromDomain(window.location.host));
+        el.setAttribute("orgId", window.digitalData?.user?.corpId || getMissingValue(serviceType));
 
         document.body.appendChild(el);
 
@@ -79,7 +79,9 @@ require("babel-polyfill");
     }
     
     function inject(fn) {
-        const script = document.createElement('script')
+        console.log("injecting script");
+        const script = document.createElement('script');
+
         if (script) {
             script.text = `(${fn.toString()})();`
             document.documentElement.appendChild(script);
@@ -116,6 +118,7 @@ require("babel-polyfill");
             environmentId: el.getAttribute("environmentId"),
             tenantId:  el.getAttribute("tenantId"),
             serviceType: el.getAttribute("serviceType"),
+            orgId: el.getAttribute("orgId"),
             contentPath: getContentPath(window.location.pathname, window.location.href)
         };
 

@@ -34,10 +34,8 @@ module.exports = {
     ],
   },
   plugins: [
+    new MiniCssExtractPlugin(),
     new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({
-      minify: true,
-    }),
     new HtmlWebpackPlugin({
       filename: "popup.html",
       template: "src/popup/popup.html",

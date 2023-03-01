@@ -15,7 +15,7 @@ import '@spectrum-web-components/icons/sp-icons-medium.js';
 import '@spectrum-web-components/action-menu/sp-action-menu.js';
 import '@spectrum-web-components/button/sp-button.js';
 import '@spectrum-web-components/button/sp-clear-button.js';
-import '@spectrum-web-components/button/sp-action-button.js';
+import '@spectrum-web-components/action-button/sp-action-button.js';
 
 import '@spectrum-web-components/sidenav/sp-sidenav.js';
 import '@spectrum-web-components/sidenav/sp-sidenav-heading.js';
@@ -35,7 +35,7 @@ import "@spectrum-css/vars/dist/spectrum-light.css";
 import "@spectrum-css/page/dist/index-vars.css";
 import "@spectrum-css/typography/dist/index-vars.css";
 import "@spectrum-css/icon/dist/index-vars.css";
-import "@spectrum-css/alert/dist/index-vars.css";
+//import "@spectrum-css/alert/dist/index-vars.css";
 import "@spectrum-css/button/dist/index-vars.css";
 
 import "./popup.css";
@@ -90,8 +90,9 @@ function getAuthorHtml(d) {
             
             <div section="1">
             <!-- Tenant Id -->
-            <p class="spectrum-Heading spectrum-Heading--S spectrum-Heading--light">Tenant</p>
+            <p class="spectrum-Heading spectrum-Heading--S spectrum-Heading--light">Tenant/Org</p>
             <sp-action-button selected>Tenant Id: ${d.tenantId}</sp-action-button>
+            <sp-action-button selected>Org Id: ${d.orgId}</sp-action-button>
 
             <!-- Program -->
             <p class="spectrum-Heading spectrum-Heading--S spectrum-Heading--light">Program</p>
@@ -111,6 +112,10 @@ function getAuthorHtml(d) {
 
         <div section="2">
             <em>Copies aio CLI command to clipboard</em>
+
+            <!-- Set AEM environment -->
+            <p class="spectrum-Heading spectrum-Heading--S spectrum-Heading--light">Set AEM environment for aio Cloud Manager plugin</p>
+            <sp-action-button data-copy-to-clipboard="aio config:set cloudmanager_orgid ${d.orgId} \r\n aio config:set cloudmanager_programid ${d.programId} \r\n aio config:set cloudmanager_environmentid ${d.environmentId}\n">aio config:set</sp-action-button>
 
             <!-- Tail Logs -->
             <p class="spectrum-Heading spectrum-Heading--S spectrum-Heading--light">Tail Logs</p>
@@ -254,10 +259,14 @@ function _tree(resource) {
 
 function _copyToClipboard(text) {
     if (text) {
+        navigator.clipboard.writeText(text);
+        /* 
+        // Deprecated approach
         let copyEl = document.getElementById("copy-to-clipboard-input");
         copyEl.value = text;
         copyEl.select();
         document.execCommand("copy");
+        */
     }
 }
 
